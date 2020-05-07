@@ -1,0 +1,58 @@
+<aura:component implements="force:hasRecordId" controller="CalloutForMeetingScheduler">
+    
+    <aura:attribute name = "searchText" type="String" default=""/>
+    <aura:attribute name="recordBusinesses" type="Object"/>
+    <aura:attribute name="theDateTime" type="DateTime"/>
+    <aura:attribute name="businessName" type="String"/>
+    <aura:attribute name="phoneNumber" type="String"/>
+    <aura:attribute name="mapMarkers" type="Object"/>
+    <aura:attribute name="markersTitle" type="String" />
+    <aura:attribute name="listView" type="String" />
+    <aura:attribute name="zoomLevel" type="Integer" />
+    <!--<aura:attribute name="autoComplete" type="String" default=""/>-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="slds-border_bottom">
+        <h2 class = "slds-text-heading--small slds-m-bottom--small">Business Search</h2>
+        <span onkeypress = "{!c.init}">
+            <lightning:input type="text" aura:id="searchText" label="" placeholder="Search" value="{!v.searchText}" class="field"/>
+            <!--<ui:inputText placeholder="Search" value="{!v.autoComplete}" updateOn = "keyup" keyup="{!c.autoComplete}"  class="slds-lookup__search-input slds-input "/>-->
+        </span>	
+        <br/>
+        <lightning:buttonIcon variant = "bare" iconName = "utility:search" class = "slds-input__icon" onclick = "{!c.updateSearch}" alternativeText="Search"/>
+    </div>
+    
+    <div class="slds-border_bottom">
+        <h2 class = "slds-text-heading--small slds-m-bottom--small">Enter Meeting Info</h2>
+        <br/>
+        <lightning:input label="Contact Phone Number" aura:id="phoneNumber" type="String" name="phone" value="{!v.phoneNumber}" />
+        <br/>
+        <lightning:input label = "Meeting Location" aura:id="businessName" type="String" name="business" value="{!v.businessName}" />
+        <br/>
+        <lightning:input aura:id="theDateTime" type="DateTime" name="date" value="{!v.theDateTime}"/>
+        <br/>
+        <lightning:button variant = "Neutral" onclick = "{!c.submit}" label="Save" />
+	</div>
+    
+    <!--<div class = "slds-border_bottom">
+        <h2 >Search Results</h2>
+        <ul>
+            <aura:iteration items="{!v.recordBusinesses}" var = "item">
+                <li class="slds-list__item">
+                    <h3>{!item.name}..........{!item.location.address1}, {!item.location.city}, {!item.location.state}, {!item.location.country}, {!item.location.zip_code}..........{!item.price}</h3>
+                </li>
+            </aura:iteration>   
+        </ul>
+    </div>-->
+    
+    <div class = "slds-p-around_medium">
+    	<h2 class="slds-text-heading--small slds-m-bottom--small">Map</h2>
+        <aura:if isTrue="{!v.mapMarkers.length > 0}" >
+            <lightning:map mapMarkers="{!v.mapMarkers}" 
+                           markersTitle="{!v.markersTitle}"
+                           listView="{!v.listView}"
+                           zoomLevel="{!v.zoomLevel}"/>
+		</aura:if>
+    </div>
+    
+</aura:component>
