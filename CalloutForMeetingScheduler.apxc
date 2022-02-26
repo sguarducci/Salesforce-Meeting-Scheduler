@@ -1,6 +1,6 @@
 public class CalloutForMeetingScheduler {
     
-    static string APIKey = 'Bearer u7pgeb4YYrRSzkW99i-Ih4wQxPoQC1RTSiTa5U0IjOzgcAUQbGD2hD_vfOcDIpI-HaL7HLlmSG8T86NHiTPKHrB4qj3panu6SD1DiRv1pjoV0G6w1GmraEauFLs4XnYx';  
+    static string APIKey = '';  
     
     @AuraEnabled
     public static String BusinessSearch(String searchText){
